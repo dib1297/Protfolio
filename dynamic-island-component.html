@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Dynamic Island Component</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --island-bg: #000000;
+            --island-width: 126px;
+            --island-height: 36px;
+            --island-expanded-width: 320px;
+            --island-expanded-height: 84px;
+            --accent-green: #34c759;
+            --text-main: #ffffff;
+            --text-sub: rgba(255, 255, 255, 0.6);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f7; /* Light background as requested */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* --- Dynamic Island Container --- */
+        .island-container {
+            position: fixed;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            perspective: 1000px;
+        }
+
+        .dynamic-island {
+            background: var(--island-bg);
+            width: var(--island-width);
+            height: var(--island-height);
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15),
+                        0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 0.5px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Glass Glow Effect */
+        .dynamic-island::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.05), transparent);
+            pointer-events: none;
+        }
+
+        .dynamic-island:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* --- Expanded State --- */
+        .dynamic-island.expanded {
+            width: var(--island-expanded-width);
+            height: var(--island-expanded-height);
+            border-radius: 42px;
+            padding: 0 20px;
+        }
+
+        /* --- Content Layout --- */
+        .island-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .dynamic-island.expanded .island-content {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 0.2s;
+        }
+
+        /* Left Side (Briefcase + Green Dot) */
+        .content-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .icon-container {
+            position: relative;
+            width: 44px;
+            height: 44px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .icon-container i {
+            color: #ffffff;
+            font-size: 20px;
+        }
+
+        .online-dot {
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            width: 12px;
+            height: 12px;
+            background-color: var(--accent-green);
+            border: 2.5px solid var(--island-bg);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-green);
+        }
+
+        /* Middle Text */
+        .text-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            padding-left: 4px;
+        }
+
+        .main-title {
+            color: var(--text-main);
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: -0.2px;
+        }
+
+        .sub-title {
+            color: var(--text-sub);
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+        /* Right Side (Small Badge or Empty) */
+        .content-right {
+            padding-left: 10px;
+        }
+
+        .status-badge {
+            background: rgba(52, 199, 89, 0.15);
+            color: var(--accent-green);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- Default State Pill Content --- */
+        .pill-default {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .dynamic-island.expanded .pill-default {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .camera-dot {
+            width: 6px;
+            height: 6px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            margin-right: 8px;
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.1);
+        }
+
+        /* Animation Keyframes */
+        @keyframes liquidPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: liquidPulse 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Sample Website Background Content */
+        .sample-content {
+            margin-top: 150px;
+            text-align: center;
+            color: #1d1d1f;
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .sample-content h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .sample-content p {
+            font-size: 18px;
+            line-height: 1.5;
+            color: #86868b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="island-container">
+        <div class="dynamic-island" id="island" onclick="toggleIsland()">
+            <!-- Default State (The "Notch" look) -->
+            <div class="pill-default">
+                <div class="camera-dot"></div>
+                <div style="width: 20px; height: 3px; background: #1a1a1a; border-radius: 2px;"></div>
+            </div>
+
+            <!-- Expanded State Content -->
+            <div class="island-content">
+                <div class="content-left">
+                    <div class="icon-container">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <div class="online-dot"></div>
+                    </div>
+                </div>
+                <div class="text-container">
+                    <span class="main-title">Available for freelance work</span>
+                    <span class="sub-title">Open for UI/UX projects</span>
+                </div>
+                <div class="content-right">
+                    <div class="status-badge">Live</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Website Background Content -->
+    <div class="sample-content">
+        <h1>Your Portfolio.</h1>
+        <p>A minimalist showcase of design and development excellence. Watch the Dynamic Island at the top for updates.</p>
+    </div>
+
+    <script>
+        const island = document.getElementById('island');
+        let isExpanded = false;
+        let autoTriggerTimer = null;
+
+        function toggleIsland() {
+            if (isExpanded) {
+                collapseIsland();
+            } else {
+                expandIsland();
+            }
+        }
+
+        function expandIsland() {
+            if(isExpanded) return;
+            isExpanded = true;
+            island.classList.add('expanded');
+            
+            // Add a "liquid" pulse effect on expansion
+            island.classList.add('pulse');
+            setTimeout(() => island.classList.remove('pulse'), 600);
+
+            // Auto collapse after 4 seconds as requested
+            setTimeout(() => {
+                collapseIsland();
+            }, 4000);
+        }
+
+        function collapseIsland() {
+            isExpanded = false;
+            island.classList.remove('expanded');
+        }
+
+        // Auto trigger every 30 seconds
+        function startAutoTrigger() {
+            autoTriggerTimer = setInterval(() => {
+                if (!isExpanded) {
+                    expandIsland();
+                }
+            }, 30000);
+        }
+
+        // Initial trigger after 3 seconds for demo purposes
+        setTimeout(() => {
+            expandIsland();
+        }, 3000);
+
+        startAutoTrigger();
+    </script>
+</body>
+</html>

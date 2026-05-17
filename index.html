@@ -1,0 +1,2319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dibyajyoti Roy's Portfolio</title>
+    <link rel="icon" type="image/png" href="cropped_circle_image.png">
+    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&display=swap"
+        rel="stylesheet">
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <!-- Globe.gl SDK (Keeping for potential fallback) -->
+    <script src="https://unpkg.com/globe.gl"></script>
+    <!-- D3.js and TopoJSON -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+    <!-- Leaflet for MacBook Style Maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="games.css">
+</head>
+
+<body>
+    <!-- Brightness Overlay -->
+    <div id="brightnessOverlay" class="brightness-overlay"></div>
+
+    <!-- MacBook Style Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <svg class="apple-logo-loading" viewBox="0 0 24 24" fill="white">
+                <path
+                    d="M18.71 19.5c-.83 1.24-1.71 2.45-3.1 2.48-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+            </svg>
+            <div class="progress-container">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MacBook Style Welcome Screen -->
+    <div id="welcomeScreen" class="welcome-screen">
+        <div class="welcome-card">
+            <div class="profile-frame">
+                <img src="cropped_circle_image.png" alt="Profile" class="welcome-profile-img">
+            </div>
+            <h1 class="welcome-name">DIBYAJYOTI ROY</h1>
+            <p class="welcome-text">Welcome to DR's Portfolio</p>
+            <p class="welcome-role">Designer & Developer</p>
+            <div class="welcome-actions">
+                <button class="primary-btn" onclick="enterPortfolio()">Explore Portfolio</button>
+                <button class="secondary-btn" onclick="enterPortfolio('gamesWindow')">Play Game</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="desktop">
+        <!-- Top Menu Bar -->
+        <header class="menu-bar">
+            <div class="left-section">
+                <span class="apple-icon">
+                    <img src="cropped_circle_image.png" alt="Apple Logo">
+                </span>
+                <span class="app-name" onclick="location.reload()">Dibyajyoti Roy's Portfolio</span>
+                <nav class="nav-links">
+                    <a href="#" onclick="openWindow('contactWindow')">Contact</a>
+                    <a href="#" onclick="openWindow('resumeWindow')">Resume</a>
+                </nav>
+            </div>
+            <div class="right-section">
+                <!-- Wi-Fi -->
+                <svg class="status-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round">
+                    <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+                    <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+                    <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+                    <circle cx="12" cy="19" r="1.2" fill="currentColor" />
+                </svg>
+                <!-- Battery -->
+                <svg class="status-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round">
+                    <rect x="2" y="7" width="15" height="10" rx="2" />
+                    <path d="M20 11v2" />
+                    <path d="M5 10v4" stroke-width="3" />
+                </svg>
+                <!-- Search -->
+                <svg id="searchIcon" class="status-icon" width="15" height="15" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5" onclick="toggleSpotlight()">
+                    <circle cx="11" cy="11" r="8" />
+                    <path d="m21 21-4.3-4.3" />
+                </svg>
+                <!-- Control Center -->
+                <img id="controlCenterIcon"
+                    src="https://s3.macosicons.com/macosicons/icons/wEgTx0LD5q/lowResPngFile_6ceef75a785b8d2b5bb3fb0f0cf793cb_wEgTx0LD5q.png"
+                    alt="Control Center" class="status-icon-img">
+                <!-- Siri -->
+                <img id="siriIcon"
+                    src="https://s3.macosicons.com/macosicons/icons/eCFoMwgZRa/lowResPngFile_8933582654c9f43963937852a23a2eda_low_res_Siri__iOS_18_.png"
+                    alt="Siri" class="status-icon-img siri-status">
+                <span id="clock" onclick="toggleNotificationCenter()">Sunday, May 25 6:00 PM</span>
+            </div>
+        </header>
+
+        <!-- Apple Dropdown Menu -->
+        <div class="apple-dropdown" id="appleDropdown">
+            <div class="menu-header">
+                <img src="cropped_circle_image.png" alt="Profile">
+                <div class="user-info">
+                    <span class="user-name">Dibyajyoti Roy</span>
+                    <span class="user-role">Designer & Developer</span>
+                </div>
+            </div>
+            <div class="menu-separator"></div>
+            <div class="menu-content">
+                <a href="https://dribbble.com" target="_blank" class="menu-link dribbble-link">
+                    <img src="https://static.vecteezy.com/system/resources/previews/023/986/985/large_2x/dribbble-logo-dribbble-logo-transparent-dribbble-icon-transparent-free-free-png.png"
+                        alt="Dribbble">
+                    Dribbble
+                </a>
+                <a href="https://instagram.com" target="_blank" class="menu-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                    </svg>
+                    Instagram
+                </a>
+                <a href="https://behance.net" target="_blank" class="menu-link behance-link">
+                    <img src="https://www.iconpacks.net/icons/1/free-behance-icon-106-thumb.png" alt="Behance">
+                    Behance
+                </a>
+                <a href="https://linkedin.com" target="_blank" class="menu-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg>
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+
+        <!-- Control Center Panel -->
+        <div class="control-center" id="controlCenter">
+            <div class="cc-grid">
+                <!-- Connectivity Box -->
+                <div class="cc-box cc-connectivity">
+                    <div class="cc-item active" id="cc-wifi">
+                        <div class="cc-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round">
+                                <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+                                <path d="M1.42 9a16 16 0 0 1 21.16 0" />
+                                <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+                                <circle cx="12" cy="19" r="1.2" fill="currentColor" />
+                            </svg>
+                        </div>
+                        <div class="cc-text">
+                            <span class="cc-label">Wi-Fi</span>
+                            <span class="cc-value">Home_5G</span>
+                        </div>
+                    </div>
+                    <div class="cc-item active" id="cc-bluetooth">
+                        <div class="cc-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round">
+                                <path d="m7 7 10 10-5 5V2l5 5L7 17" />
+                            </svg>
+                        </div>
+                        <div class="cc-text">
+                            <span class="cc-label">Bluetooth</span>
+                            <span class="cc-value">On</span>
+                        </div>
+                    </div>
+                    <div class="cc-item active" id="cc-airdrop">
+                        <div class="cc-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round">
+                                <path d="M12 22a5 5 0 0 0 5-5l-5-5-5 5a5 5 0 0 0 5 5Z" />
+                                <path d="M12 12a5 5 0 0 0 5-5l-5-5-5 5a5 5 0 0 0 5 5Z" />
+                            </svg>
+                        </div>
+                        <div class="cc-text">
+                            <span class="cc-label">AirDrop</span>
+                            <span class="cc-value">Everyone</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Focus and Mirroring -->
+                <div class="cc-box cc-small" id="cc-focus">
+                    <div class="cc-icon-bg">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round">
+                            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+                        </svg>
+                    </div>
+                    <span class="cc-label">Focus</span>
+                </div>
+                <div class="cc-box cc-small" id="cc-mirroring">
+                    <div class="cc-icon-bg">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round">
+                            <rect width="18" height="12" x="3" y="5" rx="2" />
+                            <path d="M12 17v4M8 21h8" />
+                        </svg>
+                    </div>
+                    <span class="cc-label">Stage Manager</span>
+                </div>
+
+                <!-- Display Slider -->
+                <div class="cc-box cc-slider-container">
+                    <span class="cc-label">Display</span>
+                    <div class="cc-slider-wrapper">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="position: absolute; left: 10px; z-index: 1; opacity: 0.5;">
+                            <circle cx="12" cy="12" r="4" />
+                            <path
+                                d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+                        </svg>
+                        <input type="range" class="cc-slider" id="brightnessSlider" value="80" min="0" max="100">
+                    </div>
+                </div>
+
+                <!-- Sound Slider -->
+                <div class="cc-box cc-slider-container">
+                    <span class="cc-label">Sound</span>
+                    <div class="cc-slider-wrapper">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" style="position: absolute; left: 10px; z-index: 1; opacity: 0.5;">
+                            <path
+                                d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14" />
+                        </svg>
+                        <input type="range" class="cc-slider" id="soundSlider" value="65" min="0" max="100">
+                    </div>
+                </div>
+
+                <!-- Music Player -->
+                <div class="cc-box cc-music">
+                    <div class="music-info">
+                        <img src="spotify songs/image/Music Cover Art - DIGITAL HELPER💡.jpg" id="cc-album-art" alt="Album Art">
+                        <div class="music-text">
+                            <span class="song-title" id="cc-song-title">Blinding Lights</span>
+                            <span class="artist-name" id="cc-artist-name">The Weeknd</span>
+                        </div>
+                    </div>
+                    <div class="music-controls" id="cc-next-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="m6 18 8.5-6L6 6v12zM16 6v12h2V6h-2z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Main Desktop Area -->
+        <main class="desktop-content">
+            <div class="center-text">
+                <p id="pressureSubText">welcome to my</p>
+                <h1 id="pressureText">portfolio</h1>
+            </div>
+
+
+
+            <!-- Sticky Note -->
+            <div class="sticky-note">
+                <h3>To do:</h3>
+                <ul>
+                    <li>Design interfaces that people actually enjoy</li>
+                    <li>Improve my UX research skills</li>
+                    <li>Master Figma (and maybe not fight Auto Layout 😅)</li>
+                    <li>Learn design systems properly</li>
+                    <li>Write cleaner, scalable code</li>
+                    <li>Bridge the gap between design & development</li>
+                    <li>Build a portfolio that stands out</li>
+                    <li>Stay updated with UI trends (without blindly copying them)</li>
+                    <li>Practice accessibility-first design</li>
+                    <li>Get better at user testing & feedback</li>
+                    <li>Ship real-world projects, not just Dribbble shots</li>
+                    <li>Collaborate better with teams</li>
+                    <li>Turn ideas into usable products</li>
+                    <li>Never stop learning 🚀</li>
+                </ul>
+            </div>
+
+            <!-- Desktop Icons -->
+            <div class="desktop-icons">
+                <div class="icon-item">
+                    <div class="folder-icon"></div>
+                    <span>Project 02 (Simplingo)</span>
+                </div>
+                <div class="icon-item">
+                    <div class="folder-icon"></div>
+                    <span>Project 01 (AbsolutMess)</span>
+                </div>
+                <div class="icon-item">
+                    <div class="folder-icon"></div>
+                    <span>Project 03 (Leafpress)</span>
+                </div>
+                <div class="icon-item ai-icon-item" onclick="openWindow('aiWindow')">
+                    <img src="https://s3.macosicons.com/macosicons/parse/Advanced_Machine_Intelligence.png"
+                        alt="AI Agent" class="desktop-app-icon">
+                    <span>Dibya AI</span>
+                </div>
+
+                <div class="icon-item" onclick="openWindow('resumeWindow')">
+                    <div class="file-icon"></div>
+                    <span>Resume.pdf</span>
+                </div>
+                <div class="icon-item" onclick="openWindow('aboutWindow')">
+                    <div class="folder-icon"></div>
+                    <span>About Me</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- Dock -->
+        <footer class="dock-container">
+            <div class="dock">
+                <div class="dock-item" data-label="Finder" onclick="toggleWindow('finderWindow')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/RxN9TflwJQ/lowResPngFile_f582703640d9e26120bfa366b17a8d31_low_res_Finder__MacOS_Tahoe_Beta_2_.png"
+                        alt="Finder">
+                    <div class="indicator"></div>
+                </div>
+                <div class="dock-item" data-label="Safari" onclick="toggleWindow('safariWindow')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/utug9Rt8g6/lowResPngFile_a0b8d534889b5695781a9a03f388e2d4_low_res_Safari__MacOS_Tahoe_.png"
+                        alt="Safari">
+                    <div class="indicator"></div>
+                </div>
+                <div class="dock-item" data-label="Messages" onclick="toggleWindow('messagesWindow')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/0a9ABZZvIR/lowResPngFile_62f2d747b8ababaf4ba7cd92ea393e3b_low_res_Messages.png"
+                        alt="Messages">
+                    <div class="indicator"></div>
+                </div>
+                <div class="dock-item" data-label="Mail" id="dockMail" onclick="toggleWindow('mailWindow')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/OABVbEbk1D/lowResPngFile_1b3cda920534d66fcf25849afdeee35b_low_res_Mail__MacOS_Tahoe_.png"
+                        alt="Mail">
+                    <div class="indicator"></div>
+                </div>
+                <div class="dock-item" data-label="Maps" onclick="toggleWindow('mapWindow')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/5aA6m3BXxr/lowResPngFile_a3b2511cb67879107a0b6da86c3d1dc5_low_res_Maps__MacOS_Tahoe_.png"
+                        alt="Maps">
+                    <div class="indicator"></div>
+                </div>
+                <div class="dock-item" data-label="Photos">
+                    <img src="https://s3.macosicons.com/macosicons/icons/GnoLTHQNAZ/lowResPngFile_f4e3bd7d0753d890bb3b53e3ea193cfe_low_res_Photos__MacOS_Tahoe_.png"
+                        alt="Photos">
+                    <div class="indicator"></div>
+                </div>
+                <div class="dock-item" data-label="Calendar" id="dockCalendar" onclick="toggleWindow('calendarWindow')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/aB61H9yTMc/lowResPngFile_5ca9bfc5bab8a02de674c8aafe0c6f19_low_res_Calendar.png"
+                        alt="Calendar">
+                    <div class="indicator"></div>
+                </div>
+                <div class="dock-item" data-label="GitHub" onclick="window.open('https://github.com/dib1297', '_blank')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/6d09PrC8bn/lowResPngFile_70cee6e34929fee3cdb2da6864e3659e_low_res_GitHub_Desktop__default_.png"
+                        alt="GitHub">
+                    <div class="indicator"></div>
+                </div>
+                <div class="dock-item" data-label="Settings" onclick="toggleWindow('settingsWindow')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/mTHdx8YStT/lowResPngFile_4fc1a86ec5cb831e11c424f412b8da37_low_res_Settings.png"
+                        alt="Settings">
+                    <div class="indicator"></div>
+                </div>
+                <div class="dock-item" data-label="Games" id="dockGames" onclick="toggleWindow('gamesWindow')">
+                    <div class="dock-games-icon">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                    <div class="indicator"></div>
+                </div>
+                <div class="dock-item hidden" id="dockContact" data-label="Contact Me"
+                    onclick="toggleWindow('contactWindow')">
+                    <div class="dock-contact-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div class="indicator"></div>
+                </div>
+                <div class="dock-separator"></div>
+
+                <div class="dock-item" data-label="Spotify" onclick="toggleSpotifyWidget(event)">
+                    <img src="https://s3.macosicons.com/macosicons/icons/eDpSrffbjR/lowResPngFile_04e134b699ac3257438f8ef2abaadca2_low_res_Spotify.png"
+                        alt="Spotify">
+                    <div class="indicator"></div>
+                </div>
+                <div class="dock-item" data-label="Trash">
+                    <img src="https://s3.macosicons.com/macosicons/icons/i6uxurjUfB/lowResPngFile_1b485fc15554faa3d5ee5a57708290a6_low_res_trash-empty.png"
+                        alt="Trash">
+                    <div class="indicator"></div>
+                </div>
+                <div class="dock-item" id="dockAI" data-label="Dibya AI" onclick="toggleWindow('aiWindow')">
+                    <img src="https://s3.macosicons.com/macosicons/parse/Advanced_Machine_Intelligence.png"
+                        alt="AI Agent">
+                    <div class="indicator"></div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Spotify Widget -->
+        <div class="spotify-widget" id="spotifyWidget">
+            <div class="spotify-main">
+                <div class="spotify-left">
+                    <div class="album-cover-container">
+                        <img src="spotify%20songs/image/Music%20Cover%20Art%20-%20DIGITAL%20HELPER%F0%9F%92%A1.jpg" id="main-playlist-cover" alt="Album Cover">
+                    </div>
+                    <div class="playlist-info">
+                        <h3 class="playlist-name">My Playlist</h3>
+                        <p class="playlist-curator">Curated by Dibya</p>
+                    </div>
+                    <div class="left-controls">
+                        <i class="fa-solid fa-play" id="spotify-play"></i>
+                        <i class="fa-solid fa-pause" id="spotify-pause"></i>
+                        <i class="fa-solid fa-forward-step" id="spotify-next"></i>
+                    </div>
+                </div>
+                <div class="spotify-right">
+                    <div class="spotify-header">
+                        <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_Green.png" alt="Spotify" class="spotify-logo-mini">
+                    </div>
+                    <div class="song-list-scroll">
+                        <div class="song-list" id="main-song-list">
+                            <div class="song-item active" data-index="0">
+                                <span class="song-num">1</span>
+                                <div class="song-details">
+                                    <span class="song-title">Blinding Lights</span>
+                                    <span class="song-artist">The Weeknd</span>
+                                </div>
+                            </div>
+                            <div class="song-item" data-index="1">
+                                <span class="song-num">2</span>
+                                <div class="song-details">
+                                    <span class="song-title">The Twist</span>
+                                    <span class="song-artist">Chubby Checker</span>
+                                </div>
+                            </div>
+                            <div class="song-item" data-index="2">
+                                <span class="song-num">3</span>
+                                <div class="song-details">
+                                    <span class="song-title">Smooth</span>
+                                    <span class="song-artist">Santana ft. Rob Thomas</span>
+                                </div>
+                            </div>
+                            <div class="song-item" data-index="3">
+                                <span class="song-num">4</span>
+                                <div class="song-details">
+                                    <span class="song-title">Mack the Knife</span>
+                                    <span class="song-artist">Bobby Darin</span>
+                                </div>
+                            </div>
+                            <div class="song-item" data-index="4">
+                                <span class="song-num">5</span>
+                                <div class="song-details">
+                                    <span class="song-title">Uptown Funk</span>
+                                    <span class="song-artist">Mark Ronson ft. Bruno Mars</span>
+                                </div>
+                            </div>
+                            <div class="song-item" data-index="5">
+                                <span class="song-num">6</span>
+                                <div class="song-details">
+                                    <span class="song-title">How Do I Live</span>
+                                    <span class="song-artist">LeAnn Rimes</span>
+                                </div>
+                            </div>
+                            <div class="song-item" data-index="6">
+                                <span class="song-num">7</span>
+                                <div class="song-details">
+                                    <span class="song-title">Party Rock Anthem</span>
+                                    <span class="song-artist">LMFAO</span>
+                                </div>
+                            </div>
+                            <div class="song-item" data-index="7">
+                                <span class="song-num">8</span>
+                                <div class="song-details">
+                                    <span class="song-title">I Gotta Feeling</span>
+                                    <span class="song-artist">Black Eyed Peas</span>
+                                </div>
+                            </div>
+                            <div class="song-item" data-index="8">
+                                <span class="song-num">9</span>
+                                <div class="song-details">
+                                    <span class="song-title">Macarena</span>
+                                    <span class="song-artist">Los Del Rio</span>
+                                </div>
+                            </div>
+                            <div class="song-item" data-index="9">
+                                <span class="song-num">10</span>
+                                <div class="song-details">
+                                    <span class="song-title">Shape of You</span>
+                                    <span class="song-artist">Ed Sheeran</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Window -->
+        <div class="window contact-window" id="contactWindow">
+            <div class="window-header">
+                <div class="traffic-lights">
+                    <span class="light close" onclick="closeWindow('contactWindow')"></span>
+                    <span class="light minimize" onclick="minimizeWindow('contactWindow')"></span>
+                    <span class="light maximize" onclick="maximizeWindow('contactWindow')"></span>
+                </div>
+                <div class="window-title">Contact Me</div>
+            </div>
+            <div class="window-content">
+                <div class="window-main-content">
+                    <div class="contact-layout">
+                        <div class="contact-form-side">
+                            <form id="contactForm">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label><span>★</span> What's your name?</label>
+                                        <input type="text" name="user_name" placeholder="Dibyajyoti Roy *" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span>★</span> What's your email?</label>
+                                        <input type="email" name="user_email" placeholder="dibya.mail1297@gmail.com *"
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label><span>★</span> What's the name of your organization?</label>
+                                        <input type="text" name="organization" placeholder="Organization name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span>★</span> What's the services are you looking for?</label>
+                                        <input type="text" name="services" placeholder="Web Design, Development...">
+                                    </div>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label><span>★</span> Your message</label>
+                                    <textarea name="message" placeholder="Hello Dibya, can you help me with... *"
+                                        required></textarea>
+                                </div>
+                                <div class="form-row full-width">
+                                    <button type="submit" class="send-btn" id="sendBtn">
+                                        <span class="btn-text">Send Message</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="contact-info-side">
+                            <div class="info-block">
+                                <h4>CONTACT DETAILS</h4>
+                                <p>dibya.mail1297@gmail.com</p>
+                                <p>+911234567890</p>
+                            </div>
+                            <div class="info-block">
+                                <h4>SOCIALS</h4>
+                                <div class="social-list">
+                                    <a href="#">Instagram</a>
+                                    <a href="#">LinkedIn</a>
+                                    <a href="#">Dribbble</a>
+                                    <a href="#">Behance</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Resize Handles -->
+            <div class="resize-handle n"></div>
+            <div class="resize-handle s"></div>
+            <div class="resize-handle e"></div>
+            <div class="resize-handle w"></div>
+            <div class="resize-handle ne"></div>
+            <div class="resize-handle nw"></div>
+            <div class="resize-handle se"></div>
+            <div class="resize-handle sw"></div>
+        </div>
+        <!-- About Me Window -->
+        <div class="window about-window" id="aboutWindow">
+            <div class="window-header">
+                <div class="traffic-lights">
+                    <span class="light close" onclick="closeWindow('aboutWindow')"></span>
+                    <span class="light minimize" onclick="minimizeWindow('aboutWindow')"></span>
+                    <span class="light maximize" onclick="maximizeWindow('aboutWindow')"></span>
+                </div>
+                <div class="window-title">About Me</div>
+            </div>
+            <div class="window-content">
+                <div class="page about-page-content">
+                    <div class="meta">
+                        <div class="meta-line"></div>
+                        <span class="meta-label">About me</span>
+                        <div class="meta-line"></div>
+                    </div>
+
+                    <div class="hero">
+                        <div>
+                            <p class="role-tag">UI/UX Designer &amp; Developer</p>
+                            <h1 class="name">Where design<br>meets <em>code.</em></h1>
+                        </div>
+                        <div class="hero-right">
+                            <p class="bio">I'm a UI/UX designer and developer who lives at the intersection of
+                                <strong>aesthetics and engineering.</strong> My background in Computer Science &amp;
+                                Engineering gives me a rare edge — I don't just design beautiful things, I build them.
+                            </p>
+                            <p class="bio">I craft <strong>interaction-rich, user-centered websites</strong> — with deep
+                                focus on usability, micro-animations, and experiences that feel alive from first click
+                                to last scroll.</p>
+                        </div>
+                    </div>
+
+                    <div class="quote-block">
+                        <p class="quote-text">"The combination of my passion for design, code &amp; interaction
+                            positions me in a unique place in the web design world."</p>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <p class="section-title">My UI/UX process</p>
+                    <div class="process-grid">
+                        <div class="process-card">
+                            <div class="process-num">01</div>
+                            <div class="process-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="11" cy="11" r="7" />
+                                    <path d="M21 21l-4.35-4.35" />
+                                </svg>
+                            </div>
+                            <div class="process-name">Discover</div>
+                            <div class="process-desc">Research users, goals, and pain points before touching any tool.
+                            </div>
+                        </div>
+                        <div class="process-card">
+                            <div class="process-num">02</div>
+                            <div class="process-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                                    <path d="M3 9h18M9 21V9" />
+                                </svg>
+                            </div>
+                            <div class="process-name">Wireframe</div>
+                            <div class="process-desc">Low-fi layouts to map structure, hierarchy, and user flows.</div>
+                        </div>
+                        <div class="process-card">
+                            <div class="process-num">03</div>
+                            <div class="process-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                                    <path d="M2 17l10 5 10-5" />
+                                    <path d="M2 12l10 5 10-5" />
+                                </svg>
+                            </div>
+                            <div class="process-name">Design</div>
+                            <div class="process-desc">High-fidelity Figma prototypes with full design system components.
+                            </div>
+                        </div>
+                        <div class="process-card">
+                            <div class="process-num">04</div>
+                            <div class="process-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <polyline points="16 18 22 12 16 6" />
+                                    <polyline points="8 6 2 12 8 18" />
+                                </svg>
+                            </div>
+                            <div class="process-name">Build</div>
+                            <div class="process-desc">Pixel-perfect development in Webflow with smooth interactions.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <p class="section-title">Design vs development</p>
+                    <div class="approach-row">
+                        <div class="approach-card">
+                            <div class="approach-head">
+                                <div class="approach-dot dot-design"></div>
+                                <div class="approach-title">UI/UX Design</div>
+                            </div>
+                            <div class="approach-text">User research, wireframing, prototyping, design systems, visual
+                                hierarchy, accessibility, and interaction design — all grounded in real user needs.
+                            </div>
+                        </div>
+                        <div class="approach-card">
+                            <div class="approach-head">
+                                <div class="approach-dot dot-dev"></div>
+                                <div class="approach-title">Development</div>
+                            </div>
+                            <div class="approach-text">Scalable Webflow builds, micro-animations, responsive layouts,
+                                and clean code — bridging the gap between design intent and live product.</div>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <p class="section-title">Skill confidence</p>
+                    <div class="expertise-bar-wrap" id="bars">
+                        <div class="bar-row">
+                            <div class="bar-top"><span class="bar-label">UI Design</span><span
+                                    class="bar-pct">90%</span></div>
+                            <div class="bar-track">
+                                <div class="bar-fill" data-w="90"></div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-top"><span class="bar-label">UX Research &amp; Prototyping</span><span
+                                    class="bar-pct">80%</span></div>
+                            <div class="bar-track">
+                                <div class="bar-fill" data-w="80"></div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-top"><span class="bar-label">Webflow Development</span><span
+                                    class="bar-pct">85%</span></div>
+                            <div class="bar-track">
+                                <div class="bar-fill" data-w="85"></div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-top"><span class="bar-label">Interaction &amp; Animation</span><span
+                                    class="bar-pct">82%</span></div>
+                            <div class="bar-track">
+                                <div class="bar-fill" data-w="82"></div>
+                            </div>
+                        </div>
+                        <div class="bar-row">
+                            <div class="bar-top"><span class="bar-label">Figma &amp; Prototyping</span><span
+                                    class="bar-pct">88%</span></div>
+                            <div class="bar-track">
+                                <div class="bar-fill" data-w="88"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <p class="section-title">Tools &amp; stack</p>
+                    <div class="skills-grid">
+                        <div class="skill-item">Figma</div>
+                        <div class="skill-item">Webflow</div>
+                        <div class="skill-item">VS Code</div>
+                        <div class="skill-item">Flutter</div>
+                        <div class="skill-item">Framer</div>
+                        <div class="skill-item">Photoshop</div>
+                        <div class="skill-item">Premiere Pro</div>
+                        <div class="skill-item">Stitch</div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <p class="section-title">At a glance</p>
+                    <div class="stats">
+                        <div class="stat">
+                            <div class="stat-num">3+</div>
+                            <div class="stat-label">Years of experience</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-num">2</div>
+                            <div class="stat-label">Disciplines mastered</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-num">∞</div>
+                            <div class="stat-label">Ideas to build</div>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+
+                    <p class="section-title">Find me on</p>
+                    <div class="social-row">
+
+                        <a class="social-link" href="https://dribbble.com" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0zm7.369 5.542a10.04 10.04 0 0 1 2.265 5.897c-.33-.065-3.633-.738-6.961-.32-.075-.18-.148-.363-.226-.545-.208-.49-.432-.978-.662-1.455 3.674-1.498 5.346-3.654 5.584-3.577zM12 2.036c2.551 0 4.888.948 6.663 2.502-.207.201-1.72 2.21-5.275 3.537C11.638 5.448 9.896 3.62 9.625 3.322A10.07 10.07 0 0 1 12 2.036zM7.48 4.088c.258.282 1.967 2.12 3.74 5.122-4.713 1.253-8.875 1.227-9.33 1.22A10.07 10.07 0 0 1 7.48 4.088zM1.986 12.009v-.261c.44.01 5.32.073 10.358-1.435.289.565.562 1.14.812 1.717-.127.036-.256.073-.382.114C7.33 13.757 4.824 18.003 4.62 18.36A10.027 10.027 0 0 1 1.986 12.01zm10.014 10.013a10.03 10.03 0 0 1-6.207-2.145c.162-.342 2.013-4.014 7.526-6.055l.065-.024a35.88 35.88 0 0 1 1.836 6.519 10.002 10.002 0 0 1-3.22.705zm5.127-1.696a37.76 37.76 0 0 0-1.71-6.108c2.773-.44 5.208.284 5.512.375a10.064 10.064 0 0 1-3.802 5.733z" />
+                            </svg>
+                            Dribbble
+                            <span class="arrow">↗</span>
+                        </a>
+
+                        <a class="social-link" href="https://instagram.com" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+                            </svg>
+                            Instagram
+                            <span class="arrow">↗</span>
+                        </a>
+
+                        <a class="social-link" href="https://behance.net" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M6.938 4.503c.702 0 1.34.06 1.92.188.577.13 1.07.33 1.485.61.41.28.733.65.96 1.12.225.47.34 1.05.34 1.73 0 .74-.17 1.36-.507 1.86-.338.5-.837.9-1.502 1.22.906.26 1.576.72 2.022 1.37.448.66.665 1.45.665 2.36 0 .75-.13 1.39-.41 1.93-.28.55-.67 1-1.16 1.35-.48.348-1.05.6-1.67.767-.61.165-1.25.248-1.91.248H0V4.502h6.938zm-.34 5.65c.584 0 1.06-.134 1.425-.4.367-.27.55-.695.55-1.27 0-.31-.057-.57-.17-.78-.11-.21-.268-.376-.466-.5-.2-.12-.43-.204-.69-.254-.26-.05-.535-.075-.82-.075H3.24v3.28h3.357zm.1 5.95c.317 0 .616-.03.9-.09s.53-.165.743-.315c.21-.15.38-.347.5-.59.12-.24.183-.54.183-.895 0-.71-.197-1.22-.59-1.54-.395-.32-.935-.48-1.624-.48H3.24v3.91h3.458zm8.696-1.816c.37.36.9.54 1.588.54.494 0 .924-.124 1.29-.372.364-.248.586-.51.67-.79h2.56c-.41 1.276-1.03 2.192-1.87 2.747-.838.556-1.855.832-3.05.832-.826 0-1.57-.133-2.232-.4-.66-.267-1.222-.642-1.684-1.13-.46-.484-.816-1.065-1.064-1.74-.248-.674-.373-1.415-.373-2.22 0-.78.13-1.51.393-2.183.264-.673.635-1.254 1.11-1.74.478-.487 1.047-.87 1.706-1.148.662-.278 1.39-.418 2.186-.418.892 0 1.678.173 2.356.518.678.344 1.24.81 1.688 1.396.45.586.77 1.258.963 2.017.19.758.255 1.553.198 2.386h-7.637c0 .71.247 1.384.618 1.744zM21.4 9.2c-.323-.356-.836-.533-1.54-.533-.437 0-.8.074-1.09.224-.29.148-.524.332-.7.55-.178.22-.3.455-.37.705-.07.25-.11.484-.12.702h4.63c-.07-.737-.294-1.293-.81-1.648zM15.435 5.44h5.524v1.44H15.435V5.44z" />
+                            </svg>
+                            Behance
+                            <span class="arrow">↗</span>
+                        </a>
+
+                        <a class="social-link" href="https://linkedin.com" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                            </svg>
+                            LinkedIn
+                            <span class="arrow">↗</span>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Resize Handles -->
+            <div class="resize-handle n"></div>
+            <div class="resize-handle s"></div>
+            <div class="resize-handle e"></div>
+            <div class="resize-handle w"></div>
+            <div class="resize-handle ne"></div>
+            <div class="resize-handle nw"></div>
+            <div class="resize-handle se"></div>
+            <div class="resize-handle sw"></div>
+        </div>
+
+        <!-- Resume Window -->
+        <div class="window resume-window" id="resumeWindow">
+            <div class="window-header">
+                <div class="traffic-lights">
+                    <span class="light close" onclick="closeWindow('resumeWindow')"></span>
+                    <span class="light minimize" onclick="minimizeWindow('resumeWindow')"></span>
+                    <span class="light maximize" onclick="maximizeWindow('resumeWindow')"></span>
+                </div>
+                <div class="window-title">Resume - Dibyajyoti Roy</div>
+            </div>
+            <div class="window-content">
+                <div class="window-main-content resume-content">
+                    <div class="resume-header">
+                        <div class="header-content">
+                            <h1>Dibyajyoti Roy</h1>
+                            <p>dibya.mail1297@gmail.com | +91 9641297534 | West Bengal, India </p>
+                        </div>
+                        <button class="download-resume-btn" onclick="window.print()">
+                            Download
+                        </button>
+                    </div>
+
+                    <div class="resume-section">
+                        <h3>WORK EXPERIENCE</h3>
+                        <div class="resume-item">
+                            <div class="resume-item-header">
+                                <strong>UI / UX Design Specialization • Course</strong>
+                                <span>Jan 2025 - Jun 2025</span>
+                            </div>
+                            <p>Coursera</p>
+                        </div>
+                        <div class="resume-item">
+                            <div class="resume-item-header">
+                                <strong>Web Development • Internship</strong>
+                                <span>Dec 2023 - May 2024</span>
+                            </div>
+                            <p>Assam Electronics Development Corporation Ltd, Guwahati</p>
+                        </div>
+                    </div>
+
+                    <div class="resume-section">
+                        <h3>EDUCATION</h3>
+                        <div class="resume-item">
+                            <div class="resume-item-header">
+                                <strong>Diploma, Computer Science & Engineering</strong>
+                                <span>2021 - 2024</span>
+                            </div>
+                            <p>Central Institute Of Technology</p>
+                        </div>
+                        <div class="resume-item">
+                            <div class="resume-item-header">
+                                <strong>Secondary (X), WBBSE</strong>
+                                <span>2021</span>
+                            </div>
+                            <p>Dinhata High School</p>
+                            <p>Percentage: 72.00%</p>
+                        </div>
+                    </div>
+
+                    <div class="resume-section">
+                        <h3>TRAININGS / CERTIFICATIONS</h3>
+                        <div class="resume-item">
+                            <div class="resume-item-header">
+                                <strong>Data Science</strong>
+                                <span>Jan 2024</span>
+                            </div>
+                            <p>Remark Skill, Guwahati</p>
+                        </div>
+                    </div>
+
+                    <div class="resume-section">
+                        <h3>TOOLS</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item">• Figma</div>
+                            <div class="skill-item">• Visual Studio Code</div>
+                            <div class="skill-item">• Webflow</div>
+                            <div class="skill-item">• Premiere Pro</div>
+                            <div class="skill-item">• Photoshop</div>
+                            <div class="skill-item">• Flutter</div>
+                            <div class="skill-item">• Stitch</div>
+                            <div class="skill-item">• Framer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Resize Handles -->
+            <div class="resize-handle n"></div>
+            <div class="resize-handle s"></div>
+            <div class="resize-handle e"></div>
+            <div class="resize-handle w"></div>
+            <div class="resize-handle ne"></div>
+            <div class="resize-handle nw"></div>
+            <div class="resize-handle se"></div>
+            <div class="resize-handle sw"></div>
+        </div>
+
+        <div class="window map-window" id="mapWindow">
+            <div class="window-header">
+                <div class="traffic-lights">
+                    <span class="light close" onclick="closeWindow('mapWindow')"></span>
+                    <span class="light minimize" onclick="minimizeWindow('mapWindow')"></span>
+                    <span class="light maximize" onclick="maximizeWindow('mapWindow')"></span>
+                </div>
+                <div class="window-title">Maps</div>
+                <div class="header-controls">
+                    <div class="map-search-container">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Search for a place or address" id="mapSearchInput">
+                    </div>
+                </div>
+            </div>
+            <div class="window-content mac-maps-container">
+                <div id="leafletMap"></div>
+                <div class="map-controls-floating">
+                    <button onclick="toggleMapTheme()" title="Toggle Theme"><i class="fa-solid fa-circle-half-stroke"></i></button>
+                    <button onclick="resetMapToWorld()" title="Reset View"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+                    <button onclick="zoomToWB()" title="Highlight West Bengal"><i class="fa-solid fa-location-dot"></i></button>
+                    <button onclick="mapObj.zoomIn()" title="Zoom In"><i class="fa-solid fa-plus"></i></button>
+                    <button onclick="mapObj.zoomOut()" title="Zoom Out"><i class="fa-solid fa-minus"></i></button>
+                </div>
+            </div>
+            <!-- Resize Handles -->
+            <div class="resize-handle n"></div>
+            <div class="resize-handle s"></div>
+            <div class="resize-handle e"></div>
+            <div class="resize-handle w"></div>
+            <div class="resize-handle ne"></div>
+            <div class="resize-handle nw"></div>
+            <div class="resize-handle se"></div>
+            <div class="resize-handle sw"></div>
+        </div>
+        <!-- Calendar Window -->
+        <div class="window calendar-window" id="calendarWindow">
+            <div class="window-header calendar-header">
+                <div class="traffic-lights">
+                    <span class="light close" onclick="closeWindow('calendarWindow')"></span>
+                    <span class="light minimize" onclick="minimizeWindow('calendarWindow')"></span>
+                    <span class="light maximize" onclick="maximizeWindow('calendarWindow')"></span>
+                </div>
+                <div class="window-title">Calendar</div>
+                <div class="header-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search" id="calSearch">
+                </div>
+            </div>
+
+            <div class="window-content calendar-container-new">
+                <!-- Left Sidebar -->
+                <aside class="cal-sidebar-left">
+                    <button class="new-event-btn" onclick="openNewEventModal()">
+                        <i class="fa-solid fa-plus"></i>
+                        New Event
+                    </button>
+                    
+                    <div class="mini-calendar-container" id="miniCalendar">
+                        <!-- Mini Calendar via JS -->
+                    </div>
+
+                    <div class="calendar-list">
+                        <h3>My Calendars</h3>
+                        <div class="cal-item"><span class="dot" style="background:#3b82f6"></span> Personal <input type="checkbox" checked></div>
+                        <div class="cal-item"><span class="dot" style="background:#ef4444"></span> Work <input type="checkbox" checked></div>
+                        <div class="cal-item"><span class="dot" style="background:#8b5cf6"></span> Design <input type="checkbox" checked></div>
+                        <div class="cal-item"><span class="dot" style="background:#10b981"></span> Study <input type="checkbox" checked></div>
+                    </div>
+
+                    <div class="view-info-box">
+                        <p class="info-label">Current View</p>
+                        <h4 id="currentViewLabel">Month</h4>
+                        <p class="info-text">Click New Event to add an event to the selected date.</p>
+                    </div>
+                </aside>
+
+                <!-- Main Area -->
+                <main class="cal-main-area">
+                    <div class="cal-main-header">
+                        <div class="cal-nav-controls">
+                            <button class="nav-btn" onclick="changeMonth(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                            <button class="nav-btn" onclick="changeMonth(1)"><i class="fa-solid fa-chevron-right"></i></button>
+                            <button class="today-nav-btn" onclick="goToToday()">Today</button>
+                        </div>
+                        <h1 id="mainCalTitle">May 2026</h1>
+                        <div class="view-switcher">
+                            <button class="view-btn" data-view="Day" onclick="setCalView('Day')">Day</button>
+                            <button class="view-btn" data-view="Week" onclick="setCalView('Week')">Week</button>
+                            <button class="view-btn active" data-view="Month" onclick="setCalView('Month')">Month</button>
+                            <button class="view-btn" data-view="Year" onclick="setCalView('Year')">Year</button>
+                        </div>
+                    </div>
+
+                    <div id="calendarViewContainer">
+                        <!-- Views (Month, Day, Week, Year) will be rendered here -->
+                    </div>
+                </main>
+
+                <!-- Right Sidebar -->
+                <aside class="cal-sidebar-right">
+                    <div class="selected-date-box">
+                        <p>Selected Date</p>
+                        <div class="date-display">
+                            <span id="selectedDayBig">14</span>
+                            <span id="selectedMonthShort">MAY</span>
+                        </div>
+                        <p id="selectedYearSmall">2026</p>
+                    </div>
+
+                    <div class="events-section">
+                        <div class="events-header">
+                            <h3>Events</h3>
+                            <button class="add-event-mini" onclick="openNewEventModal()"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <div class="events-list" id="eventsList">
+                            <!-- Events via JS -->
+                        </div>
+                    </div>
+
+                    <div class="people-section">
+                        <h3>People</h3>
+                        <div class="person-item">
+                            <div class="avatar"><i class="fa-solid fa-user"></i></div>
+                            <div class="person-info">
+                                <strong>Dibya</strong>
+                                <span>Available</span>
+                            </div>
+                        </div>
+                        <div class="person-item">
+                            <div class="avatar"><i class="fa-solid fa-user"></i></div>
+                            <div class="person-info">
+                                <strong>Client</strong>
+                                <span>Available</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- New Event Modal -->
+            <div id="newEventModal" class="cal-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div>
+                            <p class="modal-subtitle">New Event</p>
+                            <h2 id="modalDateTitle">14 May 2026</h2>
+                        </div>
+                        <button class="close-modal" onclick="closeNewEventModal()">&times;</button>
+                    </div>
+                    <form id="newEventForm">
+                        <div class="form-group">
+                            <label>Event Title</label>
+                            <input type="text" id="eventTitle" placeholder="Example: Client Call" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Time</label>
+                                <select id="eventTime">
+                                    <option>8:00 AM</option>
+                                    <option>9:00 AM</option>
+                                    <option selected>10:00 AM</option>
+                                    <option>10:30 AM</option>
+                                    <option>12:00 PM</option>
+                                    <option>2:00 PM</option>
+                                    <option>4:00 PM</option>
+                                    <option>6:00 PM</option>
+                                    <option>7:00 PM</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Calendar</label>
+                                <select id="eventCalendar">
+                                    <option>Personal</option>
+                                    <option selected>Work</option>
+                                    <option>Design</option>
+                                    <option>Study</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Location</label>
+                            <input type="text" id="eventLocation" placeholder="Example: Google Meet">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="cancel-btn" onclick="closeNewEventModal()">Cancel</button>
+                            <button type="submit" class="submit-btn">Add Event</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Resize Handles -->
+            <div class="resize-handle n"></div>
+            <div class="resize-handle s"></div>
+            <div class="resize-handle e"></div>
+            <div class="resize-handle w"></div>
+            <div class="resize-handle ne"></div>
+            <div class="resize-handle nw"></div>
+            <div class="resize-handle se"></div>
+            <div class="resize-handle sw"></div>
+        </div>
+
+
+        <!-- Messages Window -->
+        <div class="window messages-window" id="messagesWindow">
+            <div class="window-header">
+                <div class="traffic-lights">
+                    <span class="light close" onclick="closeWindow('messagesWindow')"></span>
+                    <span class="light minimize" onclick="minimizeWindow('messagesWindow')"></span>
+                    <span class="light maximize" onclick="maximizeWindow('messagesWindow')"></span>
+                </div>
+                <div class="window-title">Messages</div>
+            </div>
+            <div class="window-content">
+                <!-- Chat Area -->
+                <div class="chat-area faq-theme">
+                    <div class="chat-header">
+                        <div class="faq-meta">
+                            <span class="faq-author">Dibya's FAQ's</span>
+                            <span class="faq-time" id="faqTime">9:41 AM</span>
+                        </div>
+                    </div>
+
+                    <div class="faq-list" id="faqList">
+                        <!-- FAQ Item 1 -->
+                        <div class="faq-item">
+                            <div class="question-bubble has-reaction">
+                                What kind of designer are you?
+                                <span class="reaction heart">❤️</span>
+                            </div>
+                            <div class="action-wrapper">
+                                <button class="faq-expand-btn active" onclick="expandFAQ(this, 'I focus on interaction-rich UI/UX design, bridging the gap between aesthetics and engineering.')">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 2 -->
+                        <div class="faq-item">
+                            <div class="question-bubble">
+                                What inspires your design style?
+                            </div>
+                            <button class="faq-expand-btn" onclick="expandFAQ(this, 'I find inspiration in minimalist architecture, modern typography, and the fluid motion of nature.')">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- FAQ Item 3 -->
+                        <div class="faq-item">
+                            <div class="question-bubble has-reaction">
+                                What's your design process like?
+                                <span class="reaction star">⭐</span>
+                            </div>
+                            <button class="faq-expand-btn" onclick="expandFAQ(this, 'Discovery, Wireframing, High-fidelity Design, and finally, Pixel-perfect Development.')">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- FAQ Item 4 -->
+                        <div class="faq-item">
+                            <div class="question-bubble">
+                                How do you handle creative blocks?
+                            </div>
+                            <button class="faq-expand-btn" onclick="expandFAQ(this, 'I step away from the screen, sketch on paper, or explore unrelated creative fields for a fresh perspective.')">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- FAQ Item 5 -->
+                        <div class="faq-item">
+                            <div class="question-bubble has-reaction">
+                                Favorite kind of project to work on?
+                                <span class="reaction heart">❤️</span>
+                            </div>
+                            <button class="faq-expand-btn" onclick="expandFAQ(this, 'Interaction-heavy web applications and immersive portfolio experiences like this one!')">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- FAQ Item 6 -->
+                        <div class="faq-item">
+                            <div class="question-bubble has-tail">
+                                What makes you a good collaborator?
+                            </div>
+                            <button class="faq-expand-btn" onclick="expandFAQ(this, 'Clear communication, technical empathy, and a constant drive to solve problems as a team.')">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Resize Handles -->
+            <div class="resize-handle n"></div>
+            <div class="resize-handle s"></div>
+            <div class="resize-handle e"></div>
+            <div class="resize-handle w"></div>
+            <div class="resize-handle ne"></div>
+            <div class="resize-handle nw"></div>
+            <div class="resize-handle se"></div>
+            <div class="resize-handle sw"></div>
+        </div>
+    </div>
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Spotlight Search -->
+    <div id="spotlightSearch" class="spotlight-container">
+        <div class="spotlight-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                style="color: #007AFF;">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.3-4.3" />
+            </svg>
+            <input type="text" id="spotlightInput" placeholder="Spotlight Search" autocomplete="off">
+        </div>
+        <div id="spotlightResults" class="spotlight-results"></div>
+    </div>
+
+
+
+    <!-- Notification Center (Side Panel) -->
+    <div id="notificationCenter" class="notification-center">
+        <div class="nc-content">
+            <!-- Calendar Widget -->
+            <div class="nc-widget calendar-widget">
+                <div class="calendar-header">
+                    <span id="ncMonth">May</span>
+                    <span id="ncYear">2026</span>
+                </div>
+                <div class="calendar-grid-header">
+                    <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+                </div>
+                <div id="calendarGrid" class="calendar-grid">
+                    <!-- Days will be generated by JS -->
+                </div>
+            </div>
+
+            <!-- Weather Widget (Bonus) -->
+            <div class="nc-widget weather-widget">
+                <div class="weather-info">
+                    <span class="city">Kolkata</span>
+                    <span class="temp">32°</span>
+                </div>
+                <p>Sunny</p>
+            </div>
+
+            <!-- Notifications Section -->
+            <div class="nc-section-title">Notifications</div>
+            <div id="ncNotifications" class="nc-notifications-list">
+                <p class="no-notifications">No new notifications</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Siri Listening UI -->
+    <div id="siriUI" class="siri-container">
+        <div class="siri-content">
+            <div class="siri-orb-container">
+                <div class="siri-orb">
+                    <div class="siri-ribbon magenta"></div>
+                    <div class="siri-ribbon cyan"></div>
+                    <div class="siri-ribbon blue"></div>
+                    <div class="siri-ribbon green"></div>
+                </div>
+                <div class="siri-orb-glow"></div>
+            </div>
+            <p id="siriText" class="siri-prompt">Listening...</p>
+        </div>
+    </div>
+
+    <!-- Finder Window -->
+    <div class="window finder-window" id="finderWindow">
+        <div class="window-header">
+            <div class="traffic-lights">
+                <span class="light close" onclick="closeWindow('finderWindow')"></span>
+                <span class="light minimize" onclick="minimizeWindow('finderWindow')"></span>
+                <span class="light maximize" onclick="maximizeWindow('finderWindow')"></span>
+            </div>
+            <div class="window-title">Finder</div>
+        </div>
+        <div class="window-content finder-layout">
+            <aside class="finder-sidebar">
+                <div class="sidebar-section">
+                    <p class="sidebar-header">Favorites</p>
+                    <div class="sidebar-item active" onclick="switchFinderView('Work')">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        <span>Work</span>
+                    </div>
+                    <div class="sidebar-item" onclick="switchFinderView('About')">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <span>About Me</span>
+                    </div>
+                    <div class="sidebar-item" onclick="switchFinderView('Resume')">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        <span>Resume</span>
+                    </div>
+                    <div class="sidebar-item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                        <span>Trash</span>
+                    </div>
+                </div>
+                <div class="sidebar-section">
+                    <p class="sidebar-header">Projects</p>
+                    <div class="sidebar-item">
+                        <div class="folder-dot"></div>
+                        <span>Project 01</span>
+                    </div>
+                    <div class="sidebar-item">
+                        <div class="folder-dot"></div>
+                        <span>Project 02</span>
+                    </div>
+                    <div class="sidebar-item">
+                        <div class="folder-dot"></div>
+                        <span>Project 03</span>
+                    </div>
+                </div>
+            </aside>
+            <main class="finder-main">
+                <!-- Work View -->
+                <div class="finder-view active" id="finderWorkView">
+                    <div class="finder-main-header">
+                        <h2>Work</h2>
+                        <p>Recent Projects</p>
+                    </div>
+                    <div class="finder-grid">
+                        <div class="finder-icon-item">
+                            <div class="folder-icon larger"></div>
+                            <span>Project 02 (Simplingo)</span>
+                        </div>
+                        <div class="finder-icon-item">
+                            <div class="folder-icon larger"></div>
+                            <span>Project 03 (Leafpress)</span>
+                        </div>
+                        <div class="finder-icon-item">
+                            <div class="folder-icon larger"></div>
+                            <span>Project 01 (AbsolutMess)</span>
+                        </div>
+                        <div class="finder-icon-item">
+                            <div class="folder-icon larger"></div>
+                            <span>Project 04 (Research)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About View -->
+                <div class="finder-view" id="finderAboutView">
+                    <div class="finder-main-header">
+                        <h2>About Me</h2>
+                        <p>Who I am and what I do</p>
+                    </div>
+                    <div class="finder-scrollable-content">
+                        <!-- Content will be mirrored from aboutWindow -->
+                    </div>
+                </div>
+
+                <!-- Resume View -->
+                <div class="finder-view" id="finderResumeView">
+                    <div class="finder-main-header">
+                        <h2>Resume</h2>
+                        <p>Experience and Skills</p>
+                    </div>
+                    <div class="finder-scrollable-content">
+                        <!-- Content will be mirrored from resumeWindow -->
+                    </div>
+                </div>
+            </main>
+
+        </div>
+        <!-- Resize Handles -->
+        <div class="resize-handle n"></div>
+        <div class="resize-handle s"></div>
+        <div class="resize-handle e"></div>
+        <div class="resize-handle w"></div>
+        <div class="resize-handle ne"></div>
+        <div class="resize-handle nw"></div>
+        <div class="resize-handle se"></div>
+        <div class="resize-handle sw"></div>
+    </div>
+
+    <!-- Mobile iOS Files App -->
+    <div class="window ios-files-window" id="filesWindow">
+        <div class="ios-files-header">
+            <div class="ios-files-top-nav">
+                <span class="ios-files-back" onclick="closeWindow('filesWindow')"><i class="fa-solid fa-chevron-left"></i> Folders</span>
+                <span class="ios-files-more"><i class="fa-solid fa-ellipsis-circle"></i></span>
+            </div>
+            <h1>Browse</h1>
+            <div class="ios-files-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Search">
+                <i class="fa-solid fa-microphone"></i>
+            </div>
+        </div>
+        <div class="ios-files-content">
+            <div class="ios-list-group">
+                <div class="ios-list-header">Locations</div>
+                <div class="ios-list-item" onclick="openWindow('aboutWindow')">
+                    <div class="ios-list-icon blue"><i class="fa-solid fa-user"></i></div>
+                    <div class="ios-list-text">About Me</div>
+                    <i class="fa-solid fa-chevron-right ios-list-arrow"></i>
+                </div>
+                <div class="ios-list-item" onclick="openWindow('projectsWindow')">
+                    <div class="ios-list-icon cyan"><i class="fa-solid fa-briefcase"></i></div>
+                    <div class="ios-list-text">Projects</div>
+                    <i class="fa-solid fa-chevron-right ios-list-arrow"></i>
+                </div>
+                <div class="ios-list-item">
+                    <div class="ios-list-icon gray"><i class="fa-solid fa-trash"></i></div>
+                    <div class="ios-list-text">Recently Deleted</div>
+                    <i class="fa-solid fa-chevron-right ios-list-arrow"></i>
+                </div>
+            </div>
+
+            <div class="ios-list-group">
+                <div class="ios-list-header">Favorites</div>
+                <div class="ios-list-item" onclick="openWindow('resumeWindow')">
+                    <div class="ios-list-icon blue"><i class="fa-solid fa-file-pdf"></i></div>
+                    <div class="ios-list-text">Resume.pdf</div>
+                    <i class="fa-solid fa-chevron-right ios-list-arrow"></i>
+                </div>
+            </div>
+
+            <div class="ios-list-group">
+                <div class="ios-list-header">Tags</div>
+                <div class="ios-list-item">
+                    <div class="ios-tag-circle red"></div>
+                    <div class="ios-list-text">Red</div>
+                    <div class="ios-tag-count">2</div>
+                </div>
+                <div class="ios-list-item">
+                    <div class="ios-tag-circle orange"></div>
+                    <div class="ios-list-text">Orange</div>
+                    <div class="ios-tag-count">5</div>
+                </div>
+                <div class="ios-list-item">
+                    <div class="ios-tag-circle green"></div>
+                    <div class="ios-list-text">Green</div>
+                    <div class="ios-tag-count">1</div>
+                </div>
+            </div>
+        </div>
+        <div class="ios-bottom-bar">
+            <div class="ios-tab">
+                <i class="fa-regular fa-clock"></i>
+                <span>Recents</span>
+            </div>
+            <div class="ios-tab">
+                <i class="fa-solid fa-folder-shared"></i>
+                <span>Shared</span>
+            </div>
+            <div class="ios-tab active">
+                <i class="fa-solid fa-folder"></i>
+                <span>Browse</span>
+            </div>
+        </div>
+        
+        <!-- Mobile close bar at top to easily close -->
+        <div class="mobile-close-indicator" onclick="closeWindow('filesWindow')"></div>
+    </div>
+
+    <!-- Safari Window -->
+    <div class="window safari-window" id="safariWindow">
+        <!-- Safari Chrome (replaces window-header for proper column layout) -->
+        <div class="safari-chrome">
+            <!-- Row 1: Traffic lights + Tab Bar -->
+            <div class="safari-titlebar">
+                <div class="traffic-lights">
+                    <span class="light close" onclick="closeWindow('safariWindow')"></span>
+                    <span class="light minimize" onclick="minimizeWindow('safariWindow')"></span>
+                    <span class="light maximize" onclick="maximizeWindow('safariWindow')"></span>
+                </div>
+                <!-- Safari Tab Bar -->
+                <div class="safari-tabs">
+                    <div class="safari-tab active" id="safariTabActive">
+                        <img src="https://s3.macosicons.com/macosicons/icons/utug9Rt8g6/lowResPngFile_a0b8d534889b5695781a9a03f388e2d4_low_res_Safari__MacOS_Tahoe_.png" class="tab-favicon" alt="favicon">
+                        <span class="tab-title" id="safariTabTitle">New Tab</span>
+                        <span class="tab-close" onclick="closeWindow('safariWindow')">×</span>
+                    </div>
+                    <div class="safari-new-tab" onclick="safariNewTab()" title="New Tab">+</div>
+                </div>
+                <div style="width: 80px;"></div><!-- spacer to balance traffic lights -->
+            </div>
+            <!-- Row 2: Toolbar (Back/Fwd + URL + Actions) -->
+            <div class="safari-toolbar">
+                <div class="safari-nav-btns">
+                    <button class="safari-nav-btn" id="safariBackBtn" onclick="safariBack()" title="Back">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                    </button>
+                    <button class="safari-nav-btn" id="safariForwardBtn" onclick="safariForward()" title="Forward">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                    </button>
+                </div>
+                <div class="safari-url-bar" onclick="focusSafariUrl()">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    <input type="text" id="safariUrlInput" class="safari-url-input" value=""
+                        onkeydown="safariHandleUrl(event)"
+                        onfocus="this.select()"
+                        placeholder="Search or enter website name"
+                        spellcheck="false">
+                    <div class="safari-url-reload" onclick="safariReload()" title="Reload">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6"/><path d="M21 13a9 9 0 1 1-3-7.7L21 8"/></svg>
+                    </div>
+                </div>
+                <div class="safari-toolbar-actions">
+                    <button class="safari-action-btn" title="Share">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                    </button>
+                    <button class="safari-action-btn" title="Sidebar">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    <!-- Safari Content -->
+        <div class="safari-content" id="safariContent">
+            <!-- Loading bar -->
+            <div class="safari-progress-bar" id="safariProgress"></div>
+            <!-- iFrame for actual browsing (sandboxed) -->
+            <iframe id="safariFrame" class="safari-iframe" 
+                src="about:blank"
+                sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+                title="Safari Browser"></iframe>
+            <!-- Start Page (shown when blank) -->
+            <div class="safari-start-page" id="safariStartPage">
+                <div class="safari-start-bg"></div>
+                <div class="safari-start-content">
+                    <div class="safari-start-logo">
+                        <img src="https://s3.macosicons.com/macosicons/icons/utug9Rt8g6/lowResPngFile_a0b8d534889b5695781a9a03f388e2d4_low_res_Safari__MacOS_Tahoe_.png" alt="Safari">
+                    </div>
+                    <h2 class="safari-start-title">Favourites</h2>
+                    <div class="safari-favourites">
+                        <div class="safari-fav-item" onclick="safariNavigate('https://dribbble.com')">
+                            <div class="safari-fav-icon" style="background: #ea4c89;">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12 12-5.373 12-12S18.628 0 12 0z"/></svg>
+                            </div>
+                            <span>Dribbble</span>
+                        </div>
+                        <div class="safari-fav-item" onclick="safariNavigate('https://www.google.com')">
+                            <div class="safari-fav-icon" style="background: white; border: 1px solid #e0e0e0;">
+                                <svg width="22" height="22" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+                            </div>
+                            <span>Google</span>
+                        </div>
+                        <div class="safari-fav-item" onclick="safariNavigate('https://github.com')">
+                            <div class="safari-fav-icon" style="background: #24292e;">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            </div>
+                            <span>GitHub</span>
+                        </div>
+                        <div class="safari-fav-item" onclick="safariNavigate('https://linkedin.com')">
+                            <div class="safari-fav-icon" style="background: #0077b5;">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            </div>
+                            <span>LinkedIn</span>
+                        </div>
+                        <div class="safari-fav-item" onclick="safariNavigate('https://behance.net')">
+                            <div class="safari-fav-icon" style="background: #1769ff;">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M6.938 4.503c.702 0 1.34.06 1.92.188.577.13 1.07.33 1.485.61.41.28.733.65.96 1.12.225.47.34 1.05.34 1.73 0 .74-.17 1.36-.507 1.86-.338.5-.837.9-1.502 1.22.906.26 1.576.72 2.022 1.37.448.66.665 1.45.665 2.36 0 .75-.13 1.39-.41 1.93-.28.55-.67 1-1.16 1.35-.48.348-1.05.6-1.67.767-.61.165-1.25.248-1.91.248H0V4.502h6.938z"/></svg>
+                            </div>
+                            <span>Behance</span>
+                        </div>
+                        <div class="safari-fav-item" onclick="safariNavigate('https://youtube.com')">
+                            <div class="safari-fav-icon" style="background: #ff0000;">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+                            </div>
+                            <span>YouTube</span>
+                        </div>
+                    </div>
+                    <div class="safari-privacy-report">
+                        <div class="safari-privacy-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <div>
+                            <div class="safari-privacy-title">Privacy Report</div>
+                            <div class="safari-privacy-sub">Safari stopped 0 trackers today</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Resize Handles -->
+        <div class="resize-handle n"></div>
+        <div class="resize-handle s"></div>
+        <div class="resize-handle e"></div>
+        <div class="resize-handle w"></div>
+        <div class="resize-handle ne"></div>
+        <div class="resize-handle nw"></div>
+        <div class="resize-handle se"></div>
+        <div class="resize-handle sw"></div>
+    </div>
+
+    <!-- AI Window -->
+
+    <div class="window ai-window" id="aiWindow">
+        <div class="window-header">
+            <div class="traffic-lights">
+                <span class="light close" onclick="closeWindow('aiWindow')"></span>
+                <span class="light minimize" onclick="minimizeWindow('aiWindow')"></span>
+                <span class="light maximize" onclick="maximizeWindow('aiWindow')"></span>
+            </div>
+            <div class="window-title">Personal AI</div>
+        </div>
+        <div class="window-content ai-minimal-container">
+            <div class="ai-wrapper">
+                <div class="ai-header">
+                    <div class="ai-header-dot"></div>
+                    <h1>Dibya AI <span class="gemini-badge">2.5 Flash</span></h1>
+                    <div class="header-actions">
+                        <button class="header-clear-btn" onclick="clearAIChat()" title="Clear Chat">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 6h18"></path>
+                                <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                                <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="ai-chat-area" id="chatArea">
+                    <div class="ai-empty-state" id="emptyState">
+                        <img src="https://s3.macosicons.com/macosicons/parse/Advanced_Machine_Intelligence.png" alt="AI" class="ai-empty-img">
+                        <p>Ask me anything</p>
+                    </div>
+                </div>
+
+                <div class="ai-input-area">
+                    <div class="ai-input-box">
+                        <textarea id="msgInput" placeholder="Type a message…" rows="1"></textarea>
+                        <button class="ai-send-btn" id="aiSendBtn" onclick="sendMessage()">
+                            <svg width="16" height="16" viewBox="0 0 24 24">
+                                <path d="M2 21L23 12 2 3v7l15 2-15 2z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Resize Handles -->
+        <div class="resize-handle n"></div>
+        <div class="resize-handle s"></div>
+        <div class="resize-handle e"></div>
+        <div class="resize-handle w"></div>
+        <div class="resize-handle ne"></div>
+        <div class="resize-handle nw"></div>
+        <div class="resize-handle se"></div>
+        <div class="resize-handle sw"></div>
+    </div>
+
+    <!-- Mail Window -->
+    <div class="window mail-window" id="mailWindow">
+        <div class="window-header">
+            <div class="traffic-lights">
+                <span class="light close" onclick="closeWindow('mailWindow')"></span>
+                <span class="light minimize" onclick="minimizeWindow('mailWindow')"></span>
+                <span class="light maximize" onclick="maximizeWindow('mailWindow')"></span>
+            </div>
+            <div class="window-title">New Message</div>
+            <div class="mail-header-actions">
+                <button class="mail-send-btn-top" onclick="sendMail()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="window-content mail-layout">
+            <div class="mail-compose-header">
+                <div class="mail-field">
+                    <span class="field-label">To:</span>
+                    <input type="text" value="Dibyajyoti Roy <dibya.mail1297@gmail.com>" disabled>
+                </div>
+                <div class="mail-field">
+                    <span class="field-label">From:</span>
+                    <input type="email" id="mailSenderEmail" placeholder="Your email address *" required>
+                </div>
+                <div class="mail-field">
+                    <span class="field-label">Subject:</span>
+                    <input type="text" id="mailSubject" placeholder="Inquiry about project">
+                </div>
+            </div>
+            <div class="mail-body-container">
+                <textarea id="mailMessage" placeholder="Write your message here..."></textarea>
+            </div>
+        </div>
+        <!-- Resize Handles -->
+        <div class="resize-handle n"></div>
+        <div class="resize-handle s"></div>
+        <div class="resize-handle e"></div>
+        <div class="resize-handle w"></div>
+        <div class="resize-handle ne"></div>
+        <div class="resize-handle nw"></div>
+        <div class="resize-handle se"></div>
+        <div class="resize-handle sw"></div>
+    </div>
+
+    <!-- Settings Window -->
+    <div class="window settings-window" id="settingsWindow">
+        <div class="window-header">
+            <div class="traffic-lights">
+                <span class="light close" onclick="closeWindow('settingsWindow')"></span>
+                <span class="light minimize" onclick="minimizeWindow('settingsWindow')"></span>
+                <span class="light maximize" onclick="maximizeWindow('settingsWindow')"></span>
+            </div>
+            <div class="window-title">Settings</div>
+        </div>
+        <div class="window-content theme-switcher-container">
+            <div class="theme-card">
+                <div class="theme-icon-wrapper" id="themeIcon">
+                    <!-- Sun Icon (Default) -->
+                    <svg class="sun-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+                    </svg>
+                </div>
+                <h1>Theme Switcher</h1>
+                <p>Switch between light and dark modes to customize your workspace experience.</p>
+                
+                <div class="pill-toggle-container">
+                    <label class="pill-switch">
+                        <input type="checkbox" id="themeToggle" onchange="toggleTheme()">
+                        <span class="pill-slider">
+                            <span class="pill-knob"></span>
+                        </span>
+                    </label>
+                </div>
+                
+                <div id="themeStatus" class="theme-status">Light Mode Active</div>
+            </div>
+        </div>
+        <!-- Resize Handles -->
+        <div class="resize-handle n"></div>
+        <div class="resize-handle n"></div>
+        <div class="resize-handle s"></div>
+        <div class="resize-handle e"></div>
+        <div class="resize-handle w"></div>
+        <div class="resize-handle ne"></div>
+        <div class="resize-handle nw"></div>
+        <div class="resize-handle se"></div>
+        <div class="resize-handle sw"></div>
+    </div>
+
+    <div id="cursorTooltip" class="cursor-tooltip">open me</div>
+
+    <div class="window photos-window" id="photosWindow">
+        <div class="window-header">
+            <div class="traffic-lights">
+                <span class="light close" onclick="closeWindow('photosWindow')"></span>
+                <span class="light minimize" onclick="minimizeWindow('photosWindow')"></span>
+                <span class="light maximize" onclick="maximizeWindow('photosWindow')"></span>
+            </div>
+            <div class="window-title">Photos</div>
+        </div>
+        <div class="window-content">
+            <div class="photos-grid">
+                <div class="photo-item"><img src="cropped_circle_image.png" alt="Photo 1"></div>
+                <div class="photo-item"><img src="wallpaper/iphone-16-stock-wallpaper-1320x2868-26635.png" alt="Photo 2"></div>
+            </div>
+        </div>
+        <div class="resize-handle n"></div>
+        <div class="resize-handle s"></div>
+        <div class="resize-handle e"></div>
+        <div class="resize-handle w"></div>
+        <div class="resize-handle ne"></div>
+        <div class="resize-handle nw"></div>
+        <div class="resize-handle se"></div>
+        <div class="resize-handle sw"></div>
+    </div>
+
+    <div class="window games-window" id="gamesWindow">
+        <div class="window-header">
+            <div class="traffic-lights">
+                <span class="light close" onclick="closeWindow('gamesWindow')"></span>
+                <span class="light minimize" onclick="minimizeWindow('gamesWindow')"></span>
+                <span class="light maximize" onclick="maximizeWindow('gamesWindow')"></span>
+            </div>
+            <div class="window-title">Games Playground</div>
+        </div>
+        <div class="window-content">
+            <div class="window-sidebar">
+                <div class="sidebar-section">
+                    <h4>Games</h4>
+                    <a href="javascript:void(0)" class="sidebar-item active" id="uxGameTab" onclick="switchGameView('ux')">
+                        <i class="fa-solid fa-magnifying-glass"></i> UX Mistake
+                    </a>
+                    <a href="javascript:void(0)" class="sidebar-item" id="builderGameTab" onclick="switchGameView('builder')">
+                        <i class="fa-solid fa-puzzle-piece"></i> Layout Puzzle
+                    </a>
+                    <a href="javascript:void(0)" class="sidebar-item" id="quizGameTab" onclick="switchGameView('quiz')">
+                        <i class="fa-solid fa-brain"></i> Design Quiz
+                    </a>
+                </div>
+            </div>
+            <div class="window-main-content" style="padding: 0; overflow: hidden;">
+                <div id="uxMistakeView" class="game-view active">
+                    <canvas id="uxParticles"></canvas>
+                    <div class="ux-hud">
+                        <div class="hud-logo">🔍 <span>UX Bug Hunt</span></div>
+                        <div class="hud-pill">
+                            <div class="hud-pill-label">Score</div>
+                            <div class="hud-pill-val s" id="ux-score-val">0</div>
+                        </div>
+                        <div class="hud-pill">
+                            <div class="hud-pill-label">Found</div>
+                            <div class="hud-pill-val f"><span id="ux-found-val">0</span>/7</div>
+                        </div>
+                        <div class="hud-pill">
+                            <div class="hud-pill-label">Time</div>
+                            <div class="hud-pill-val t" id="ux-timer-val">2:00</div>
+                        </div>
+                        <button class="hint-btn" id="ux-hint-btn" onclick="doUXHint()">💡 Hint (3)</button>
+                    </div>
+                    <div class="ux-game-area">
+                        <div class="ux-screen-wrap">
+                            <div class="ux-browser-bar">
+                                <div class="ux-bdot red"></div><div class="ux-bdot yellow"></div><div class="ux-bdot green"></div>
+                                <div class="ux-burl">🔒 shopeasy.com/checkout/payment</div>
+                            </div>
+                            <div class="ux-mui" id="ux-mock">
+                                <div class="mui-header">
+                                    <div class="mui-logo">🛒 ShopEasy</div>
+                                    <div class="mui-steps">
+                                        <div class="mui-step done">1. Cart</div>
+                                        <div class="mui-step done"> › 2. Shipping</div>
+                                        <div class="mui-step active"> › 3. Payment</div>
+                                    </div>
+                                </div>
+                                <div class="mui-body">
+                                    <div class="mui-form">
+                                        <div class="bug-zone distract" data-bug="7" id="uxbz7">
+                                            <div class="spin-icon"></div>Syncing cart...
+                                        </div>
+                                        <div class="sec-title">Payment Information</div>
+                                        <div class="f-field">
+                                            <label class="f-label">Full Name</label>
+                                            <input class="f-input" type="text" value="Alex Johnson" readonly>
+                                        </div>
+                                        <div class="bug-zone f-field" data-bug="3" id="uxbz3">
+                                            <input class="f-input" type="email" placeholder="Enter your email address" readonly style="background:#fff8f8">
+                                        </div>
+                                        <div class="f-row">
+                                            <div class="f-field">
+                                                <label class="f-label">Card Number</label>
+                                                <input class="f-input" type="text" value="4242 4242 4242 ..." readonly>
+                                                <div class="bug-zone f-error" data-bug="4" id="uxbz4">Please enter a valid 16-digit card number</div>
+                                            </div>
+                                            <div class="f-field pw-wrap">
+                                                <label class="f-label">PIN</label>
+                                                <!-- BUG 5: No password toggle -->
+                                                <div class="bug-zone" data-bug="5" id="uxbz5" style="display:inline-block; width:100%;">
+                                                    <input class="f-input" type="password" value="1234" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- BUG 6: Tiny touch target -->
+                                        <div class="terms-row">
+                                            <div class="bug-zone" data-bug="6" id="uxbz6" style="display:inline-block;">
+                                                <input type="checkbox" class="tiny-check">
+                                            </div>
+                                            <span>I agree to the Terms & Conditions</span>
+                                        </div>
+                                        <div class="btn-row">
+                                            <!-- BUG 1: Left aligned primary button -->
+                                            <div class="bug-zone" data-bug="1" id="uxbz1" style="display:inline-block;">
+                                                <button class="btn-p">Pay Now</button>
+                                            </div>
+                                            <button class="btn-s">Cancel</button>
+                                        </div>
+                                    </div>
+                                    <div class="mui-summary">
+                                        <!-- BUG 2: Red success message -->
+                                        <div class="bug-zone coupon-msg" data-bug="2" id="uxbz2">
+                                            <span>✓ Coupon 'SAVE20' applied successfully!</span>
+                                        </div>
+                                        <div class="ord-item"><span>Subtotal</span><span>$140.00</span></div>
+                                        <div class="ord-item"><span>Shipping</span><span class="tag-free">FREE</span></div>
+                                        <div class="ord-item"><span>Discount</span><span>-$28.00</span></div>
+                                        <div class="ord-total"><span>Total</span><span>$112.00</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ux-sidebar">
+                            <div class="s-card">
+                                <div class="s-title">Bugs to Find</div>
+                                <ul class="bug-list">
+                                    <li class="b-item" data-bug="1"><div class="b-dot"></div><span class="b-name">Button Alignment</span><span class="b-pts">+100</span></li>
+                                    <li class="b-item" data-bug="2"><div class="b-dot"></div><span class="b-name">Color Semantics</span><span class="b-pts">+100</span></li>
+                                    <li class="b-item" data-bug="3"><div class="b-dot"></div><span class="b-name">Missing Label</span><span class="b-pts">+100</span></li>
+                                    <li class="b-item" data-bug="4"><div class="b-dot"></div><span class="b-name">Low Contrast</span><span class="b-pts">+100</span></li>
+                                    <li class="b-item" data-bug="5"><div class="b-dot"></div><span class="b-name">No Password Toggle</span><span class="b-pts">+100</span></li>
+                                    <li class="b-item" data-bug="6"><div class="b-dot"></div><span class="b-name">Tiny Touch Target</span><span class="b-pts">+100</span></li>
+                                    <li class="b-item" data-bug="7"><div class="b-dot"></div><span class="b-name">Autoplay Distraction</span><span class="b-pts">+100</span></li>
+                                </ul>
+                            </div>
+                            <div class="s-card" id="ux-last-card" style="display:none;">
+                                <div class="s-title">Last Found</div>
+                                <div id="ux-last-content" style="font-size:11px; color:var(--txt-game); line-height:1.5;"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Toast and End Screens -->
+                        <div class="ux-toast" id="ux-toast">
+                            <div class="toast-t" id="ux-toast-t">Bug Found!</div>
+                            <div class="toast-b" id="ux-toast-b">Description goes here</div>
+                        </div>
+                        
+                        <div class="ux-win-screen" id="ux-win">
+                            <div class="win-emoji">🏆</div>
+                            <h2 class="win-h">UX Master!</h2>
+                            <div class="win-s">Score: <span id="ux-win-score">700</span></div>
+                            <p class="win-d">You've successfully identified all the critical UX issues. A well-designed interface respects the user's time and cognitive load.</p>
+                            <button class="play-again" onclick="initUXGame()">PLAY AGAIN</button>
+                        </div>
+                        
+                        <div class="ux-gameover-screen" id="ux-gameover">
+                            <div class="win-emoji" style="animation:none">⏰</div>
+                            <h2 class="go-h">Time's Up!</h2>
+                            <div class="win-s">Found: <span id="ux-go-found">3</span>/7</div>
+                            <p class="win-d">You missed some sneaky UX bugs. Don't worry, UX auditing takes practice!</p>
+                            <button class="play-again" onclick="initUXGame()">TRY AGAIN</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="builderView" class="game-view">
+                    <div class="p-orb p-orb1"></div>
+                    <div class="p-orb p-orb2"></div>
+                    <div class="p-screen active" id="p-intro">
+                        <div class="p-intro-badge">✦ CHALLENGE</div>
+                        <h1 class="p-intro-title">Layout<br><span>Puzzle.</span></h1>
+                        <p class="p-intro-desc">Fix the broken layout by dragging components to their correct positions. Master visual hierarchy and structure.</p>
+                        <div class="p-level-chips">
+                            <div class="p-level-pill"><strong>01</strong>Landing Page</div>
+                            <div class="p-level-pill"><strong>02</strong>Pricing Table</div>
+                            <div class="p-level-pill"><strong>03</strong>Dashboard</div>
+                        </div>
+                        <button class="p-btn-primary" onclick="startPuzzle()">START BUILDING →</button>
+                    </div>
+                    <div id="p-game" class="p-screen">
+                        <div class="p-hud">
+                            <div class="p-hud-logo">LAYOUT<span>.PUZZLE</span></div>
+                            <div class="p-level-badge" id="p-level-badge">LEVEL 1</div>
+                            <div class="p-hud-stat">
+                                <div class="p-hud-label">SCORE</div>
+                                <div class="p-hud-value" id="p-score-val">0</div>
+                            </div>
+                            <div class="p-hud-stat">
+                                <div class="p-hud-label">TIME</div>
+                                <div class="p-hud-value" id="p-timer-val">90</div>
+                            </div>
+                            <div class="p-hud-progress">
+                                <div class="p-hud-label">PROGRESS</div>
+                                <div class="p-progress-track"><div class="p-progress-fill" id="p-progress-fill"></div></div>
+                            </div>
+                        </div>
+                        <div class="p-arena">
+                            <div class="p-pool-panel">
+                                <div class="p-panel-header">
+                                    <span class="p-panel-title">Components</span>
+                                    <span class="p-panel-sub">DRAG TO PLACE</span>
+                                </div>
+                                <div class="p-parts-grid" id="p-parts-grid"></div>
+                            </div>
+                            <div class="p-layout-panel">
+                                <div class="p-panel-header">
+                                    <span class="p-panel-title" id="p-layout-title">Layout</span>
+                                    <span class="p-panel-sub" id="p-layout-hint">DROP ZONES</span>
+                                </div>
+                                <div class="p-layout-canvas" id="p-layout-canvas">
+                                    <span class="p-canvas-label">CANVAS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-level-complete" id="p-level-complete">
+                        <div class="p-complete-card">
+                            <span class="p-complete-emoji" id="p-complete-emoji">🎉</span>
+                            <div class="p-complete-title" id="p-complete-title">LEVEL COMPLETE!</div>
+                            <div class="p-complete-stats">
+                                <div class="p-cstat">
+                                    <span class="p-cstat-val" id="p-cs-time">—</span>
+                                    <span class="p-cstat-lbl">TIME LEFT</span>
+                                </div>
+                                <div class="p-cstat">
+                                    <span class="p-cstat-val" id="p-cs-pts">—</span>
+                                    <span class="p-cstat-lbl">POINTS</span>
+                                </div>
+                            </div>
+                            <button class="p-btn-primary" id="p-next-btn" onclick="nextPuzzleLevel()">NEXT LEVEL →</button>
+                        </div>
+                    </div>
+                    <div id="p-gameover" class="p-screen">
+                        <div class="p-intro-badge" id="p-go-badge">✦ FINISHED</div>
+                        <div class="p-go-title" id="p-go-title">GAME OVER</div>
+                        <div class="p-go-score">TOTAL SCORE<strong id="p-go-score-val">0</strong></div>
+                        <button class="p-btn-primary" style="margin-top:1rem;" onclick="restartPuzzle()">PLAY AGAIN →</button>
+                    </div>
+                </div>
+
+                <div id="uiQuizView" class="game-view">
+                    <div class="q-screen active" id="quiz-intro">
+                        <div class="q-badge">DESIGN IQ CHALLENGE</div>
+                        <h1 class="q-intro-title">Test Your<br><span class="q-highlight">Design IQ</span></h1>
+                        <button class="q-btn-start" onclick="startQuiz()">BEGIN CHALLENGE →</button>
+                    </div>
+                    <div class="q-screen" id="quiz-game">
+                        <div class="q-header">
+                            <span class="q-counter">Question <strong id="q-num">1</strong> of <strong>10</strong></span>
+                            <div class="q-timer-wrap"><span id="q-timer-text">20</span></div>
+                        </div>
+                        <div class="q-question-text" id="q-question-text"></div>
+                        <div class="q-options" id="q-options"></div>
+                        <button class="q-btn-next" id="q-btn-next" onclick="nextQuestion()">Next Question →</button>
+                    </div>
+                    <div class="q-screen" id="quiz-result">
+                        <div class="q-result-card" style="text-align: center; padding: 20px;">
+                            <div class="q-ring-wrapper" style="position:relative; width:150px; height:150px; margin: 0 auto 20px;">
+                                <svg width="150" height="150" viewBox="0 0 150 150">
+                                    <circle cx="75" cy="75" r="65" fill="none" stroke="#e2e8f0" stroke-width="12" />
+                                    <circle id="q-ring-fill" cx="75" cy="75" r="65" fill="none" stroke="#6366f1" stroke-width="12" stroke-linecap="round" stroke-dasharray="408.4" stroke-dashoffset="408.4" style="transform: rotate(-90deg); transform-origin: 50% 50%; transition: stroke-dashoffset 1s ease-out, stroke 0.5s;" />
+                                </svg>
+                                <div class="q-score-number" id="q-score-big" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); font-size:36px; font-weight:800; color:var(--q-text);">0</div>
+                            </div>
+                            <div id="q-grade-badge" style="display:inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-bottom: 10px;"></div>
+                            <h2 class="q-result-title" id="q-result-title" style="margin-bottom:10px;"></h2>
+                            <p id="q-result-desc" style="font-size:14px; color:var(--q-muted); margin-bottom: 30px;"></p>
+                            
+                            <div id="q-answers-grid" style="display:flex; flex-direction:column; gap:10px; margin-bottom:30px; text-align:left; max-height:200px; overflow-y:auto; padding-right:10px;"></div>
+                            
+                            <div style="display:flex; justify-content:center; gap:10px;">
+                                <button class="q-btn-retry" onclick="restartQuiz()">🔄 Try Again</button>
+                                <button class="q-btn-share" onclick="shareScore()" style="padding: 10px 20px; background:var(--q-accent); color:white; border:none; border-radius:8px; font-weight:bold; cursor:pointer;">📤 Share</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="resize-handle n"></div>
+        <div class="resize-handle s"></div>
+        <div class="resize-handle e"></div>
+        <div class="resize-handle w"></div>
+        <div class="resize-handle ne"></div>
+        <div class="resize-handle nw"></div>
+        <div class="resize-handle se"></div>
+        <div class="resize-handle sw"></div>
+    </div>
+    </div>
+
+    <!-- Mobile Interface (iOS 26 Style) -->
+    <div id="mobile-interface" class="mobile-interface">
+        <!-- Status Bar -->
+        <div class="mobile-status-bar">
+            <div class="status-left">
+                <span id="mobile-time">9:41</span>
+            </div>
+            <div class="status-center">
+                <div class="dynamic-island" id="di">
+                    <div class="di-dot"></div>
+                    <div class="di-inner">
+                        <div class="di-app-icon" style="background: linear-gradient(135deg, #8e8e93, #636366);">
+                            <i class="fa-solid fa-briefcase" style="color: white; font-size: 16px;"></i>
+                        </div>
+                        <div class="di-texts">
+                            <div class="di-label">Portfolio</div>
+                            <div class="di-msg">Available for freelance work</div>
+                        </div>
+                        <div class="di-badge"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="status-right">
+                <i class="fa-solid fa-signal"></i>
+                <i class="fa-solid fa-wifi"></i>
+                <div class="battery-icon">
+                    <div class="battery-level"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lock Screen -->
+        <div id="mobile-lock-screen" class="mobile-lock-screen active">
+            <div class="lock-screen-content">
+                <div class="lock-header">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div class="lock-clock">
+                    <div id="lock-date">Friday, May 15</div>
+                    <div id="lock-time">23:49</div>
+                </div>
+                <div class="lock-widgets" style="display: none;"> <!-- Hidden to match reference -->
+                    <div class="lock-widget">
+                        <i class="fa-solid fa-calendar"></i>
+                        <span>No events</span>
+                    </div>
+                    <div class="lock-widget">
+                        <i class="fa-solid fa-cloud"></i>
+                        <span>24°C</span>
+                    </div>
+                </div>
+            </div>
+            <div class="lock-footer">
+                <div class="lock-btn" id="flashlight-btn"><i class="fa-solid fa-lightbulb"></i></div>
+                <div class="swipe-hint">Swipe up to open</div>
+                <div class="lock-btn" id="camera-btn"><i class="fa-solid fa-camera"></i></div>
+            </div>
+        </div>
+
+        <!-- Home Screen -->
+        <div id="mobile-home-screen" class="mobile-home-screen">
+            <!-- Weather Widget Area -->
+            <!-- iOS 26 Widgets -->
+            <div class="mobile-widgets">
+                <div class="widget-2x2 clock-widget">
+                    <div class="clock-face">
+                        <div class="clock-numbers">
+                            <span class="num n1">1</span>
+                            <span class="num n2">2</span>
+                            <span class="num n3">3</span>
+                            <span class="num n4">4</span>
+                            <span class="num n5">5</span>
+                            <span class="num n6">6</span>
+                            <span class="num n7">7</span>
+                            <span class="num n8">8</span>
+                            <span class="num n9">9</span>
+                            <span class="num n10">10</span>
+                            <span class="num n11">11</span>
+                            <span class="num n12">12</span>
+                        </div>
+                        <div class="clock-info">
+                            <span class="city" id="clock-city">CUP</span>
+                        </div>
+                        <div class="hand hour" id="hour-hand"></div>
+                        <div class="hand minute" id="minute-hand"></div>
+                        <div class="hand second" id="second-hand"></div>
+                        <div class="clock-center"></div>
+                    </div>
+                </div>
+                <div class="widget-2x2 calendar-widget full-grid">
+                    <div class="calendar-header">
+                        <span class="month" id="cal-month">MAY</span>
+                        <span class="year" id="cal-year">2026</span>
+                    </div>
+                    <div class="calendar-weekdays">
+                        <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+                    </div>
+                    <div class="calendar-days" id="cal-days-grid">
+                        <!-- Days will be dynamically generated -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="home-grid">
+                <!-- Row 1 (System Core) -->
+                <div class="mobile-app" onclick="openWindow('filesWindow')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/EaLSuv6kCs/lowResPngFile_b478dfff9c0a1e93c3c8c3332d2e2688_EaLSuv6kCs.png" alt="Files">
+                    <span>Files</span>
+                </div>
+                <div class="mobile-app" onclick="openWindow('mailWindow')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/OABVbEbk1D/lowResPngFile_1b3cda920534d66fcf25849afdeee35b_low_res_Mail__MacOS_Tahoe_.png" alt="Mail">
+                    <span>Mail</span>
+                </div>
+                <div class="mobile-app" onclick="openWindow('contactWindow')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/4tuDtE5ao5/lowResPngFile_40f7ffe1f8d020fd2de2aa43eb5dbb29_4tuDtE5ao5.png" alt="Phone">
+                    <span>Phone</span>
+                </div>
+                <div class="mobile-app" onclick="openWindow('messagesWindow')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/0a9ABZZvIR/lowResPngFile_62f2d747b8ababaf4ba7cd92ea393e3b_low_res_Messages.png" alt="Messages">
+                    <span>Messages</span>
+                </div>
+
+                <!-- Row 2 (Utilities) -->
+                <div class="mobile-app" onclick="openWindow('aiWindow')">
+                    <img src="https://s3.macosicons.com/macosicons/parse/Advanced_Machine_Intelligence.png" alt="AI Agent" class="ai-mobile-icon">
+                    <span>Dibya AI</span>
+                </div>
+                <div class="mobile-app" onclick="openWindow('photosWindow')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/GnoLTHQNAZ/lowResPngFile_f4e3bd7d0753d890bb3b53e3ea193cfe_low_res_Photos__MacOS_Tahoe_.png" alt="Photos">
+                    <span>Photos</span>
+                </div>
+                <div class="mobile-app" onclick="openWindow('mapWindow')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/5aA6m3BXxr/lowResPngFile_a3b2511cb67879107a0b6da86c3d1dc5_low_res_Maps__MacOS_Tahoe_.png" alt="Maps">
+                    <span>Maps</span>
+                </div>
+                <div class="mobile-app" onclick="openWindow('settingsWindow')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/mTHdx8YStT/lowResPngFile_4fc1a86ec5cb831e11c424f412b8da37_low_res_Settings.png" alt="Settings">
+                    <span>Settings</span>
+                </div>
+
+                <!-- Row 3 (Social & Dev) -->
+                <div class="mobile-app" onclick="window.open('https://github.com', '_blank')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/6d09PrC8bn/lowResPngFile_70cee6e34929fee3cdb2da6864e3659e_low_res_GitHub_Desktop__default_.png" alt="GitHub">
+                    <span>GitHub</span>
+                </div>
+                <div class="mobile-app" onclick="window.open('https://instagram.com', '_blank')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/yryloHJCrd/lowResPngFile_f37e1c7abc4364eb70f519886f2ab138_low_res_Instagram__Liguid_Glass_.png" alt="Instagram">
+                    <span>Instagram</span>
+                </div>
+                <div class="mobile-app" onclick="window.open('https://linkedin.com', '_blank')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/ZcwY6Altec/lowResPngFile_51f93886aae8020c24a499a78bc19be3_low_res_LinkedIn.png" alt="LinkedIn">
+                    <span>LinkedIn</span>
+                </div>
+                <div class="mobile-app" onclick="openWindow('gamesWindow')">
+                    <div class="mobile-games-icon">
+                        <i class="fa-solid fa-gamepad"></i>
+                    </div>
+                    <span>Games</span>
+                </div>
+
+                <!-- Row 4 (Creative) -->
+                <div class="mobile-app" onclick="openWindow('safariWindow')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/utug9Rt8g6/lowResPngFile_a0b8d534889b5695781a9a03f388e2d4_low_res_Safari__MacOS_Tahoe_.png" alt="Safari">
+                    <span>Safari</span>
+                </div>
+                <div class="mobile-app" onclick="window.open('https://dribbble.com', '_blank')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/WWT9IWnbGj/lowResPngFile_44e658685c4cff7317c26a80961464a4_WWT9IWnbGj.png" alt="Dribbble">
+                    <span>Dribbble</span>
+                </div>
+                <div class="mobile-app" onclick="window.open('https://behance.net', '_blank')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/SOokbQDfF0/lowResPngFile_f5bb9f6d13b1fb4aa9dc632a553ac1ea_low_res_Behance.png" alt="Behance">
+                    <span>Behance</span>
+                </div>
+                <div class="mobile-app" onclick="openWindow('notesWindow')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/Tn8SuaHtAM/lowResPngFile_2a846d9fb757a742e6ab7ec9b243027e_low_res_Notes__MacOS_Tahoe_.png" alt="Notes">
+                    <span>Notes</span>
+                </div>
+            </div>
+
+
+            <!-- iOS Search Bar (Spotlight) -->
+            <div class="mobile-search-bar" onclick="showSpotlight()">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>Search</span>
+            </div>
+            
+            <!-- Mobile Dock -->
+            <div class="mobile-dock">
+                <div class="mobile-dock-item" onclick="openWindow('contactWindow')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/4tuDtE5ao5/lowResPngFile_40f7ffe1f8d020fd2de2aa43eb5dbb29_4tuDtE5ao5.png" alt="Contacts">
+                </div>
+                <div class="mobile-dock-item" onclick="openWindow('messagesWindow')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/0a9ABZZvIR/lowResPngFile_62f2d747b8ababaf4ba7cd92ea393e3b_low_res_Messages.png" alt="Messages">
+                </div>
+                <div class="mobile-dock-item" onclick="openWindow('safariWindow')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/utug9Rt8g6/lowResPngFile_a0b8d534889b5695781a9a03f388e2d4_low_res_Safari__MacOS_Tahoe_.png" alt="Safari">
+                </div>
+                <div class="mobile-dock-item" onclick="openWindow('mailWindow')">
+                    <img src="https://s3.macosicons.com/macosicons/icons/OABVbEbk1D/lowResPngFile_1b3cda920534d66fcf25849afdeee35b_low_res_Mail__MacOS_Tahoe_.png" alt="Mail">
+                </div>
+            </div>
+        </div>
+
+        <!-- Persistent Home Indicator -->
+        <div class="home-indicator"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
